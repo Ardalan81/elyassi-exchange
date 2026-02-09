@@ -16,10 +16,3 @@
    ```
 
 4. Open `http://localhost:3000`.
-
-## Notes
-
-- Live rates use `RATES_API_URL` (default: open.er-api.com). Adjust to a local Iran source if desired.
-- SMTP settings are required to send confirmation emails.
-- Appointments and blocked dates are stored in `data/store.json`.
-- Uploaded documents are stored in `uploads/`.
