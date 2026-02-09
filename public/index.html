@@ -1,0 +1,209 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Elyassi Exchange | Appointment & Queue</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fraunces:wght@300;400;600&family=Manrope:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="ambient"></div>
+    <header class="hero">
+      <nav class="nav">
+        <div class="brand">
+          <span class="brand-mark">E</span>
+          <div>
+            <p class="brand-title">Elyassi Exchange</p>
+            <p class="brand-sub">Appointment & Queue System</p>
+          </div>
+        </div>
+        <div class="nav-links">
+          <a href="#rates">Rates</a>
+          <a href="#schedule">Appointments</a>
+          <a href="#queue">Queue Status</a>
+        </div>
+      </nav>
+
+      <div class="hero-grid">
+        <div class="hero-copy">
+          <p class="eyebrow">Public-Facing Concept Website</p>
+          <h1>Plan your visit. Skip the line.</h1>
+          <p class="hero-lead">
+            Elyassi Exchange brings clarity to currency exchange visits with online
+            appointments and live exchange rates.
+          </p>
+          <div class="hero-actions">
+            <a class="button primary" href="#schedule">Book an appointment</a>
+            <a class="button ghost" href="#rates">View live rates</a>
+          </div>
+        </div>
+        <div class="hero-card">
+          <div class="hero-card-top">
+            <h3>Next availability</h3>
+            <p id="next-available">Loading schedule...</p>
+          </div>
+          <div class="hero-card-bottom">
+            <div>
+              <span class="label">Open days</span>
+              <strong id="open-days">Mon · Tue · Wed · Thu · Sat</strong>
+            </div>
+            <div>
+              <span class="label">Queue size</span>
+              <strong id="queue-size">0 confirmed</strong>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <section id="rates" class="section">
+        <div class="section-head">
+          <div>
+            <p class="eyebrow">Live Exchange Board</p>
+            <h2>Iran buy & sell prices (IRR)</h2>
+            <p class="section-lead">
+              Rates update in real time from the configured data source, with Elyassi
+              Exchange buy/sell margins applied.
+            </p>
+          </div>
+          <div class="rate-controls">
+            <button id="toggle-currency" class="button ghost">Show all currencies</button>
+            <button id="toggle-unit" class="button ghost">Display in Toman</button>
+          </div>
+        </div>
+        <div class="rate-card">
+          <div class="rate-meta">
+            <span id="rates-updated">Last updated: --</span>
+            <span class="label">Buy = we purchase from customers · Sell = we sell to customers</span>
+          </div>
+          <div class="rate-table" id="rate-table"></div>
+          <p class="rate-attrib">Rates sourced from ExchangeRate-API.</p>
+        </div>
+      </section>
+
+      <section id="schedule" class="section">
+        <div class="section-head">
+          <div>
+            <p class="eyebrow">Appointment Planning</p>
+            <h2>Select a date and time slot</h2>
+            <p class="section-lead">
+              The calendar shows open and closed days. Select a time slot to reserve
+              your visit.
+            </p>
+          </div>
+        </div>
+
+        <div class="grid">
+          <div class="calendar-panel">
+            <div class="calendar-header">
+              <button class="icon-button" id="prev-month" aria-label="Previous month">‹</button>
+              <div>
+                <h3 id="calendar-month">Month</h3>
+                <p class="calendar-sub" id="calendar-sub">Jalali · Hijri</p>
+              </div>
+              <button class="icon-button" id="next-month" aria-label="Next month">›</button>
+            </div>
+            <div class="calendar-weekdays">
+              <span>Mon</span>
+              <span>Tue</span>
+              <span>Wed</span>
+              <span>Thu</span>
+              <span>Fri</span>
+              <span>Sat</span>
+              <span>Sun</span>
+            </div>
+            <div class="calendar-grid" id="calendar-grid"></div>
+            <div class="calendar-info" id="calendar-info">
+              <p>Select a day to see availability.</p>
+            </div>
+          </div>
+
+          <div class="form-panel">
+            <h3>Book your appointment</h3>
+            <div id="manage-banner" class="message is-hidden"></div>
+            <form id="booking-form" class="form" enctype="multipart/form-data" novalidate>
+              <div class="booking-details">
+                <div class="form-row">
+                  <label>
+                    First name
+                    <input type="text" name="firstName" required placeholder="e.g., Leila" />
+                  </label>
+                  <label>
+                    Last name
+                    <input type="text" name="lastName" required placeholder="e.g., Rahimi" />
+                  </label>
+                </div>
+                <label>
+                  Email address
+                  <input type="email" name="email" required placeholder="you@email.com" />
+                </label>
+                <label>
+                  Identification document
+                  <select name="documentType" required>
+                    <option value="" disabled selected>Select document</option>
+                    <option value="passport">Passport</option>
+                    <option value="national-id">National ID card</option>
+                  </select>
+                </label>
+                <label>
+                  Document ID number
+                  <input type="text" name="documentNumber" required placeholder="e.g., A1234567" />
+                </label>
+                <label>
+                  Upload document file (PDF / JPG / PNG)
+                  <input type="file" name="documentFile" accept=".pdf,image/*" required />
+                </label>
+              </div>
+
+              <label>
+                Selected date
+                <input type="text" name="date" id="selected-date" readonly required />
+              </label>
+              <div>
+                <p class="label">Select a time slot</p>
+                <div id="time-slots" class="time-slots"></div>
+                <input type="hidden" name="timeSlot" id="selected-time" required />
+              </div>
+              <button type="submit" class="button primary">Confirm appointment</button>
+            </form>
+            <div id="booking-message" class="message"></div>
+          </div>
+        </div>
+      </section>
+
+      <section id="queue" class="section alt">
+        <div class="grid single">
+          <div>
+            <p class="eyebrow">Queue Status</p>
+            <h2>Check your appointment</h2>
+            <p class="section-lead">
+              Enter your email to see the latest status and your queue position.
+            </p>
+            <form id="queue-form" class="form">
+              <label>
+                Email address
+                <input type="email" name="email" required placeholder="you@email.com" />
+              </label>
+              <button type="submit" class="button primary">Find my appointment</button>
+            </form>
+            <div id="queue-result" class="message"></div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <p>Currency Exchange Appointment & Queue System (Concept Project)</p>
+      <p>This is a concept website for Elyassi Exchange. No employment claim.</p>
+    </footer>
+
+    <script src="app.js"></script>
+  </body>
+</html>
