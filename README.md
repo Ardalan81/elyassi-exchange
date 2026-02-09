@@ -11,8 +11,8 @@ Elyassi Exchange is a public-facing concept website for a currency exchange appo
    npm install
    ```
 
-2. Create a `.env` file (you can copy from `.env.example`) and add SMTP credentials.
-   - Set `PUBLIC_BASE_URL` to your site URL so email links work.
+2. Create a `.env` file and add SMTP credentials.
+   
 
 3. Start the server:
    ```bash
