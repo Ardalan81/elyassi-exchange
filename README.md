@@ -1,4 +1,4 @@
-# Elyassi Exchange (Concept Website)
+# Elyassi Exchange 
 
 ## Setup
 
