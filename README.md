@@ -24,3 +24,13 @@ Elyassi Exchange is a public-facing concept website for a currency exchange appo
    ```
 
 4. Open `http://localhost:3000`.
+
+## Screenshots
+
+<img width="3022" height="1718" alt="image" src="https://github.com/user-attachments/assets/8d99f32a-6824-400a-aa39-1fd3a9d117a6" />
+
+-----------------------------------------------------------------------------------------------------------
+
+<img width="3024" height="1362" alt="image" src="https://github.com/user-attachments/assets/9c115f97-9e76-45ca-8f80-c13c8fb5e484" />
+
+
